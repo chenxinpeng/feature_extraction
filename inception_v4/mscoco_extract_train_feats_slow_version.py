@@ -25,9 +25,9 @@ slim = tf.contrib.slim
 
 image_size = inception.inception_v4.default_image_size
 
-mscoco_train_images_path = '/data1//ailab_view/dataset/mscoco/train2014'
-mscoco_val_images_path = '/data1//ailab_view/dataset/mscoco/val2014'
-mscoco_test_images_path = '/data1//ailab_view/dataset/mscoco/test2014'
+mscoco_train_images_path = '/data1/ailab_view/dataset/mscoco/train2014'
+mscoco_val_images_path = '/data1/ailab_view/dataset/mscoco/val2014'
+mscoco_test_images_path = '/data1/ailab_view/dataset/mscoco/test2014'
 
 train_images_feats_save_path = '/data1/ailab_view/image_caption/inception/official_splits/train_feats_v4'
 val_images_feats_save_path = '/data1/ailab_view/image_caption/inception/official_splits/val_feats_v4'
