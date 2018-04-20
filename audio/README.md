@@ -42,10 +42,11 @@ MFCC 特征提取时，对于长时间的视频，所需要的计算资源较大
 
 于是，在用同样的方式准备好视频的音频文件之后，我们运行如下脚本提取 NSynth 音频特征：
 ```bash
-python prepro_extract_nsynth.py
+python prepro_extract_nsynth.py -video_class game_of_thrones
 ```
 
-在上述我们所给的代码中，对于一段视频 V，我们将其先用 `librosa` 进行读取：
+### 说明
+在上述我们所给的示例代码 `prepro_extract_nsynth.py` 中，对于一段视频 V，我们将其先用 `librosa` 进行读取：
 ```python
 sig, rate = librosa.load(wav_path, sr=16000)
 ```
@@ -53,3 +54,6 @@ sig, rate = librosa.load(wav_path, sr=16000)
 ```python
 zip(range(0, sig.shape[0], 5 * rate), range(5 * rate, sig.shape[0], 5 * rate))
 ```
+当将 5 秒长的音频信号输入进 WaveNet 中，得到的是一个 156 x 16 大小的特征矩阵，我们将其拉直得到一个 2496 维的特征向量，这个就作为这 5 秒钟音频信号的特征。
+
+你可以根据自己的需要更改参数配置。
