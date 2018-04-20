@@ -34,8 +34,8 @@ MFCC 特征提取时，对于长时间的视频，所需要的计算资源较大
 
 ### 程序依赖 
  - TensorFlow
- - librosa
- - [Magenta](https://github.com/tensorflow/magenta/tree/master/magenta/models)
+ - [librosa](https://github.com/librosa/librosa)
+ - [magenta](https://github.com/tensorflow/magenta/tree/master/magenta/models)
 
 ### 从音频文件提取 NSynth 特征
 先下载 WaveNet 预训练好的模型文件，[Link](https://drive.google.com/file/d/1r7Di_3p-vGXBG5q1LCBbg1tie_Hhzzjd/view?usp=sharing)。将模型文件放在一个指定目录下，这里只要放置的目录与提取脚本中的读取目录一致即可。
