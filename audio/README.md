@@ -33,7 +33,7 @@ MFCC 特征提取时，对于长时间的视频，所需要的计算资源较大
 我们借助于 [NSynth](https://github.com/tensorflow/magenta/tree/master/magenta/models/nsynth) 对音频进行特征提取。NSynth 一种基于 WaveNet 用于合成声音的自编码器。
 
 ### 程序依赖 
- - TensorFlow
+ - TensorFlow >= 1.4
  - [librosa](https://github.com/librosa/librosa)
  - [magenta](https://github.com/tensorflow/magenta/tree/master/magenta/models)
 
