@@ -32,6 +32,7 @@ def extract_video_wav(video_wavs_list):
         time_start = time.time()
 
         wavnet_feat_save_path = os.path.join(video_wav_path, os.path.basename(wav_path).split('.')[0] + '.npy')
+        
         if os.path.isfile(wavnet_feat_save_path) is True:
             continue
 
@@ -51,14 +52,13 @@ def extract_video_wav(video_wavs_list):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-start', type=int, default=0)
-    parser.add_argument('-end', type=int, default=0)
+    parser.add_argument('-video_class', type=str, default='')
     args = parser.parse_args()
 
-    video_wav_path = 'data/feats_wavenet/'
+    video_wav_path = 'data/audio_feats_nsynth/'
     if os.path.isdir(video_wav_path) is False:
         os.mkdir(video_wav_path)
 
-    video_wavs_list = sorted(glob.glob('data/wavs/*.wav'))
-    extract_video_wav(video_wavs_list[args.start:args.end])
+    video_wavs_list = glob.glob('data/wavs/' + args.video_class + '/*.wav')
+    extract_video_wav(video_wavs_list)
 

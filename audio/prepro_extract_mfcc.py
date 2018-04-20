@@ -10,7 +10,7 @@ import scipy.io.wavfile as wav
 
 
 def extract_video_wav(video_wavs_list, video_class):
-    video_wav_path = 'data/wavs_mfcc_feats/' + video_class
+    video_wav_path = 'data/audio_feats_mfcc/' + video_class
     if os.path.isdir(video_wav_path) is False:
         os.mkdir(video_wav_path)
 
