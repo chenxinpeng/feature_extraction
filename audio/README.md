@@ -22,7 +22,7 @@ python prepro_extract_mfcc.py -video_class game_of_thrones
 ```
 MFCC 特征提取时，对于长时间的视频，所需要的计算资源较大，要注意这点。
 
-还有，因为在我们的视频中，从视频文件所提取出的音频文件均有两个通道，记为 C1 与 C2，我们对每个通道分别提取音频的 MFCC 特征。提取特征时，输入的设置参数中，除了输入的 `signal`（音频信号）以及 `samplerate`（采样率）之外，其余的参数为[python_speech_features](https://github.com/jameslyons/python_speech_features) 函数库中默认的参数。如 `winlen`（滑动窗口长度）设置为 25 毫秒，`winstep`（滑动窗口步长）设置为 10 毫秒，更详细的参数信息请参考[此文档](https://github.com/jameslyons/python_speech_features/blob/master/README.rst)。
+还有，因为在我们的视频中，从视频文件所提取出的音频文件均有两个通道，记为 C1 与 C2，我们对每个通道分别提取音频的 MFCC 特征。提取特征时，输入的设置参数中，除了输入的 `signal`（音频信号）以及 `samplerate`（采样率）之外，其余的参数为[python_speech_features](https://github.com/jameslyons/python_speech_features) 函数库中默认的参数。如 `winlen`（滑动窗口长度）设置为 25 毫秒，`winstep`（滑动窗口步长）设置为 10 毫秒，更详细的参数信息请参考 [文档](https://github.com/jameslyons/python_speech_features/blob/master/README.rst)。
 
 最后每个通道得到的特征均记为 A1 与 A2，其中 A1 与 A2 的维度是 L x 13，L 等于信号的长度除以采样率。接着我们将其进行拼接，得到整个音频的特征，记为 A，维度为 L x 26。提取出的 MFCC 特征会保存在 `data/audio_feats_mfcc/game_of_thrones` 目录下面，格式为 `numpy` 的 `npy` 格式。
 
