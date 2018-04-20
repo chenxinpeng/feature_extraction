@@ -11,7 +11,7 @@
 python prepro_extract_video_wavs.py -video_class game_of_thrones
 ```
 
-视频的音频文件会保存在`data/wavs/game_of_thrones`目录下面。
+视频的音频文件（`wav`格式）会保存在 `data/wavs/game_of_thrones` 目录下面。
 
 ### 从音频文件提取 MFCC 特征
 接着，运行如下脚本：
