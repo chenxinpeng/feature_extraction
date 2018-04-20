@@ -42,12 +42,13 @@ def extract_video_wav(video_wavs_list):
         for start, end in zip(range(0, sig.shape[0], 5 * rate), range(5 * rate, sig.shape[0], 5 * rate)):
             frag_sig = sig[start:end]
             frag_wavenet_feat = wavenet_encode(frag_sig)  # 156 * 16
-            wavenet_feat.append(frag_wavenet_feat.reshape([-1]))
+            frag_wavenet_feat_rs = frag_wavenet_feat.reshape([-1])
+            wavenet_feat.append(frag_wavenet_feat_rs)
 
-        wavenet_feat = np.reshape(wavenet_feat, [-1, 156 * 16])
+        wavenet_feat = wavenet_feat.reshape([-1, frag_wavenet_feat_rs.shape[0]])
         np.save(wavnet_feat_save_path, wavenet_feat)
 
-        print('{}  {}  time cost: {:.3f}'.format(idx, wav_path, time.time()-time_start))
+        print('{}  {}  time cost: {:.3f}'.format(idx, wav_path, time.time() - time_start))
 
 
 if __name__ == '__main__':

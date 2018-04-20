@@ -44,3 +44,12 @@ MFCC 特征提取时，对于长时间的视频，所需要的计算资源较大
 ```bash
 python prepro_extract_nsynth.py
 ```
+
+在上述我们所给的代码中，对于一段视频 V，我们将其先用 `librosa` 进行读取：
+```python
+sig, rate = librosa.load(wav_path, sr=16000)
+```
+`sr` 即为采样率，这里我们取的是 16000，采样率越高，得到的音频信息越全面准确，但相应的 `sig` 信号就会变大，计算量也会随之同比率增加。`wav_path` 为音频文件的位置。在我们的代码中，是将音频信号一段一段的送入 WaveNet 网络中进行特征提取，我们这里取的是每隔 5 秒取一段音频信息：
+```python
+zip(range(0, sig.shape[0], 5 * rate), range(5 * rate, sig.shape[0], 5 * rate))
+```
