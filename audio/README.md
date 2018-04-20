@@ -1,5 +1,5 @@
 # 音频特征提取
-目前音频可以提取两种特征，一种是传统的MFCC特征，另一种是利用NSynth音频编码网络提取特征。
+目前音频可以提取两种特征，一种是传统的 MFCC 特征，另一种是利用 NSynth 音频编码网络提取特征。
 
 ## MFCC 特征
 
@@ -20,15 +20,21 @@ python prepro_extract_video_wavs.py -video_class game_of_thrones
 ```bash
 python prepro_extract_mfcc.py -video_class game_of_thrones
 ```
+MFCC 特征提取时，对于长时间的视频，所需要的计算资源较大，要注意这点。
 
-注意，在我们的视频中，从视频文件所提取出的音频文件均有两个通道，记为 C1 与 C2，我们对每个通道分别提取音频的 MFCC 特征。提取特征时，输入的设置参数中，除了输入的 `signal`（音频信号）以及 `samplerate`（采样率）之外，其余的参数为[python_speech_features](https://github.com/jameslyons/python_speech_features) 函数库中默认的参数。如 `winlen`（滑动窗口长度）设置为 25 毫秒，`winstep`（滑动窗口步长）设置为 10 毫秒，更详细的参数信息请参考[此文档](https://github.com/jameslyons/python_speech_features/blob/master/README.rst)。
+还有，因为在我们的视频中，从视频文件所提取出的音频文件均有两个通道，记为 C1 与 C2，我们对每个通道分别提取音频的 MFCC 特征。提取特征时，输入的设置参数中，除了输入的 `signal`（音频信号）以及 `samplerate`（采样率）之外，其余的参数为[python_speech_features](https://github.com/jameslyons/python_speech_features) 函数库中默认的参数。如 `winlen`（滑动窗口长度）设置为 25 毫秒，`winstep`（滑动窗口步长）设置为 10 毫秒，更详细的参数信息请参考[此文档](https://github.com/jameslyons/python_speech_features/blob/master/README.rst)。
 
 最后每个通道得到的特征均记为 A1 与 A2，其中 A1 与 A2 的维度是 L x 13，L 等于信号的长度除以采样率。接着我们将其进行拼接，得到整个音频的特征，记为 A，维度为 L x 26。提取出的 MFCC 特征会保存在 `data/wavs_mfcc_feats/game_of_thrones` 目录下面，格式为 `numpy` 的 `npy` 格式。
 
 同时，需要注意的是，在音频的每一秒中，我们共可以提取到 100 个 MFCC 特征。于是每一秒的音频特征可以将这一秒内的 MFCC 特征进行拼接或者取平均操作。拼接处理后的每一秒特征为 2600 维，取平均则是 26 维度。
 
 
-## NSynth 特征 
- - TensorFlow
- - 
+## NSynth 特征
+我们借助于 [NSynth](https://github.com/tensorflow/magenta/tree/master/magenta/models/nsynth) 对音频进行特征提取。NSynth 一种基于 WaveNet 用于合成声音的自编码器。
 
+### 程序依赖 
+ - TensorFlow
+ - Magenta
+
+### 从音频文件提取 NSynth 特征
+在用同样的方式准备好视频的音频文件之后，我们运行如下脚本提取 NSynth 音频特征：
